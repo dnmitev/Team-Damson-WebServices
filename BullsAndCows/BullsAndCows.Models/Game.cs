@@ -20,10 +20,17 @@
 
         public GameState State { get; set; }
 
-        [Required]
         public string FirstPlayerId { get; set; }
 
+        [Range(1000,9999)]
+        public int FirstPlayerSecretNumber { get; set; }
+
         public virtual Player FirstPlayer { get; set; }
+
+        public string SecondPlayerId { get; set; }
+
+        [Range(1000, 9999)]
+        public int SecondPlayerSecretNumber { get; set; }
 
         public virtual Player SecondPlayer { get; set; }
     }

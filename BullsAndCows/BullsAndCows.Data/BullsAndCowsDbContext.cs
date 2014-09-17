@@ -22,20 +22,6 @@
             return new BullsAndCowsDbContext();
         }
 
-        //public IDbSet<Player> Players { get; set; }
-
         public IDbSet<Game> Games { get; set; }
-
-        //public IDbSet<GuessNumber> GuessNumbers { get; set; }
-
-        public IDbSet<T> Set<T>() where T : class
-        {
-            return base.Set<T>();
-        }
-        
-        public void SaveChanges()
-        {
-            base.SaveChanges();
-        }
     }
 }

@@ -12,14 +12,6 @@
 
     public class Player : IdentityUser
     {
-        private ICollection<GuessNumber> guessNumbers;
-
-        public Player()
-        {
-            this.GuessNumbers = new HashSet<GuessNumber>();
-        }
-        
-
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<Player> manager, string authenticationType)
         {
             // Note the authenticationType must match the one defined in CookieAuthenticationOptions.AuthenticationType
@@ -27,24 +19,5 @@
             // Add custom user claims here
             return userIdentity;
         }
-
-        public virtual ICollection<GuessNumber> GuessNumbers
-        {
-            get
-            {
-                return this.guessNumbers;
-            }
-            set
-            {
-                this.guessNumbers = value;
-            }
-        }
-
-        public int GameId { get; set; }
-
-        public virtual Game Game { get; set; }
-
-        [Range(1000, 9999)]
-        public int NumberToGuess { get; set; }
     }
 }

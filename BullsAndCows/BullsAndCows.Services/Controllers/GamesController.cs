@@ -17,22 +17,14 @@
         private readonly IGameDataValidator gameValidator;
         private readonly IUserIdProvider userIdProvider;
 
-        public GamesController()
-            : this(new BullsAndCowsData())
+        public GamesController(
+            IBullsAndCowsData data,
+            IGameDataValidator gamaValidator,
+            IUserIdProvider userIdProvider)
+            : base(data)
         {
-        }
-
-        //public GamesController(
-        //    IBullsAndCowsData data,
-        //    IGameDataValidator gamaValidator,
-        //    IUserIdProvider userIdProvider) : base(data)
-        //{
-        //    this.gameValidator = gameValidator;
-        //    this.userIdProvider = userIdProvider;
-        //}
-
-        public GamesController(IBullsAndCowsData data):base(data)
-        {
+            this.gameValidator = gameValidator;
+            this.userIdProvider = userIdProvider;
         }
 
         [HttpPost]
@@ -46,7 +38,8 @@
             var newGame = new Game
             {
                 Name = game.Name,
-                GameStart = game.GameStart
+                GameStart = game.GameStart,
+                GameEnd = game.GameEnd
             };
 
             this.Data.Games.Add(newGame);
