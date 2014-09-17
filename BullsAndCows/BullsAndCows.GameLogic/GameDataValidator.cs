@@ -10,6 +10,9 @@
     
     public class GameDataValidator : IGameDataValidator
     {
-        // TODO: Implement
+        public GameResult GetResult(int guessNumber)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

@@ -8,6 +8,7 @@
         WaitingForPlayer,
         FirstPlayerTurn,
         SecondPlayerTurn,
-        Finish
+        WonByFirstPlayer,
+        WonBySecondPlayer
     }
 }

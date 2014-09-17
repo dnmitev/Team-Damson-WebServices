@@ -43,6 +43,7 @@
     <Compile Include="Contracts\IGuess.cs" />
     <Compile Include="Contracts\IGuessResult.cs" />
     <Compile Include="GameDataValidator.cs" />
+    <Compile Include="GameResult.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

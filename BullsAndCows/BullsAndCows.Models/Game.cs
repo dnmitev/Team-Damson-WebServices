@@ -9,6 +9,12 @@
 
     public class Game
     {
+        public Game()
+        {
+            this.State = GameState.WaitingForPlayer;
+            this.GameStart = DateTime.Now;
+        }
+
         public int Id { get; set; }
 
         [MinLength(3)]
@@ -22,7 +28,7 @@
 
         public string FirstPlayerId { get; set; }
 
-        [Range(1000,9999)]
+        [Range(1000, 9999)]
         public int FirstPlayerSecretNumber { get; set; }
 
         public virtual Player FirstPlayer { get; set; }

@@ -8,6 +8,6 @@
 
     public interface IGameDataValidator
     {
-        // TODO: Implement
+        GameResult GetResult(int guessNumber);
     }
 }
