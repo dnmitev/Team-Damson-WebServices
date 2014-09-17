@@ -40,8 +40,20 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Contracts\IGameDataValidator.cs" />
+    <Compile Include="Contracts\IGuess.cs" />
+    <Compile Include="Contracts\IGuessResult.cs" />
     <Compile Include="GameDataValidator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\BullsAndCows.Data\BullsAndCows.Data.csproj">
+      <Project>{0e9e56fe-08f2-424b-b24e-fe42a1a67107}</Project>
+      <Name>BullsAndCows.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\BullsAndCows.Models\BullsAndCows.Models.csproj">
+      <Project>{503b9db7-b2d3-4008-877c-2cc4c6912e2d}</Project>
+      <Name>BullsAndCows.Models</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -1,5 +1,7 @@
 ﻿namespace BullsAndCows.GameLogic
 {
+    using BullsAndCows.Data;
+    using BullsAndCows.Models;
     using System;
     using System.Collections.Generic;
     using System.Linq;
