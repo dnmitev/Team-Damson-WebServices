@@ -22,7 +22,7 @@
 
         public DateTime GameStart { get; set; }
 
-        public DateTime GameEnd { get; set; }
+        public DateTime? GameEnd { get; set; }
 
         public GameState State { get; set; }
 
@@ -36,7 +36,7 @@
         public string SecondPlayerId { get; set; }
 
         [Range(1000, 9999)]
-        public int SecondPlayerSecretNumber { get; set; }
+        public int? SecondPlayerSecretNumber { get; set; }
 
         public virtual Player SecondPlayer { get; set; }
     }

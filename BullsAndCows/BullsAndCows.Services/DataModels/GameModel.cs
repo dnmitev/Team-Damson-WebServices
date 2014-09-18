@@ -17,7 +17,7 @@
 
         public DateTime GameStart { get; set; }
 
-        public DateTime GameEnd { get; set; }
+        public DateTime? GameEnd { get; set; }
 
         public GameState State { get; set; }
     }

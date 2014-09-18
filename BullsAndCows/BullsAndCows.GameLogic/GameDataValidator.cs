@@ -32,7 +32,7 @@
             {
                 throw new Exception("The current player game is invalid");
             }
-            int secretNumber;
+            int? secretNumber;
             if (currentGame.FirstPlayerId == guess.GuessingUserId)
             {
                 secretNumber = currentGame.SecondPlayerSecretNumber;
