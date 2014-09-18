@@ -21,17 +21,21 @@
         public IGuessResult GetResult(IGuess guess, IBullsAndCowsData data)
         {
             var guessingPlayer = data.Players.All()
-                .FirstOrDefault(x => (x as IdentityUser<string, IdentityUserLogin, IdentityUserRole, IdentityUserClaim>).Id == guess.GuessingUserId);
+                .FirstOrDefault(x => x.Id == guess.GuessingUserId);
             if (guessingPlayer == null)
             {
                 throw new ArgumentException("Player cant be found. Make sure the given user id is correct.");
             }
+
             var currentGame = data.Games.All()
-                .FirstOrDefault(x => x.FirstPlayerId == guessingPlayer.Id || x.SecondPlayerId == guessingPlayer.Id);
+                .FirstOrDefault(x => (x.FirstPlayerId == guessingPlayer.Id || x.SecondPlayerId == guessingPlayer.Id) &&
+                x.State == GameState.FirstPlayerTurn || x.State == GameState.SecondPlayerTurn);
+
             if (currentGame == null)
             {
                 throw new Exception("The current player game is invalid");
             }
+
             int? secretNumber;
             if (currentGame.FirstPlayerId == guess.GuessingUserId)
             {
@@ -42,7 +46,7 @@
                 secretNumber = currentGame.FirstPlayerSecretNumber;
             }
 
-            var result = CompareToSecret(secretNumber.ToString(), guess.ToString());
+            var result = CompareToSecret(secretNumber.ToString(), guess.GuessNumber.ToString());
 
             if (result.HasWon)
             {

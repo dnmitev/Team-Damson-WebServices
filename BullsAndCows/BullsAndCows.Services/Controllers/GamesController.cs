@@ -180,35 +180,45 @@
                     break;
                 case GameResult.WonByFirstPlayer:
                     game.State = GameState.WonByFirstPlayer;
+                    game.GameEnd = DateTime.Now;
                     this.Data.SaveChanges();
                     break;
                 case GameResult.WonBySecondPlayer:
                     game.State = GameState.WonBySecondPlayer;
+                    game.GameEnd = DateTime.Now;
                     this.Data.SaveChanges();
                     break;
                 default:
                     break;
             }
 
-            return this.Ok();
+            return this.Ok(guessResult);
         }
 
-        public IHttpActionResult Leave(PlayRequestDataModel request)
+        [HttpPost]
+        public IHttpActionResult Leave()
         {
             var currentUserId = this.userIdProvider.GetUserId();
 
-            if (request == null || !ModelState.IsValid)
-            {
-                return this.BadRequest(ModelState);
-            }
-
-            var gameId = request.GameId;
-
-            var game = this.Data.Games.SearchFor(g => g.Id == gameId).FirstOrDefault();
+            var game = this.Data.Games.All()
+                .FirstOrDefault(x => (x.FirstPlayerId == currentUserId || x.SecondPlayerId == currentUserId) &&
+                x.State == GameState.FirstPlayerTurn || x.State == GameState.SecondPlayerTurn);
 
             if (game == null)
             {
                 return this.BadRequest("Invalid game id!");
+            }
+
+            if (game.FirstPlayerId != currentUserId &&
+                game.SecondPlayerId != currentUserId)
+            {
+                return this.BadRequest("This is not your game!");
+            }
+
+            if (game.State != GameState.FirstPlayerTurn &&
+                game.State != GameState.SecondPlayerTurn)
+            {
+                return this.BadRequest("Invalid game state!");
             }
 
             if (currentUserId == game.FirstPlayerId)
@@ -222,7 +232,13 @@
 
             this.Data.SaveChanges();
 
-            return this.Ok();
+            var result = new
+            {
+                GameId = game.Id,
+                GameState = game.State
+            };
+
+            return this.Ok(result);
         }
     }
 }

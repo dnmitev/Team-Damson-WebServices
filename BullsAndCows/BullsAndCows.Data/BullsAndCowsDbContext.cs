@@ -23,5 +23,7 @@
         }
 
         public IDbSet<Game> Games { get; set; }
+
+        public IDbSet<GuessNumber> GuessNumbers { get; set; }
     }
 }
