@@ -57,6 +57,11 @@
         {
             var currentUserId = this.userIdProvider.GetUserId();
 
+            if (currentUserId == null)
+            {
+                return BadRequest("Invalid Id. Use token for authorization");
+            }
+
             var game = this.Data.Games
                 .All()
                 .Where(g => g.State == GameState.WaitingForPlayer && g.FirstPlayerId != currentUserId)
