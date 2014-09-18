@@ -163,7 +163,7 @@
             var guess = new Guess
             {
                 GuessingUserId = currentUserId,
-                Guess = guessNumber.ToString()
+                GuessNumber = guessNumber.ToString()
             };
             var guessResult = gameValidator.GetResult(guess,Data);
 

@@ -58,7 +58,7 @@
 
             return result;
         }
-         private IGuessResult CompareToSecret(string secret, string guess)
+         public IGuessResult CompareToSecret(string secret, string guess)
         {
             //TODO: A stricter validation can be put here. I don't validate for repeating syllabus for instance
             if (secret.Length != guess.Length)

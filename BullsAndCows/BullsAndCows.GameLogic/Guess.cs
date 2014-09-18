@@ -15,7 +15,7 @@
             set;
         }
 
-        public string Guess
+        public string GuessNumber
         {
             get;
             set;

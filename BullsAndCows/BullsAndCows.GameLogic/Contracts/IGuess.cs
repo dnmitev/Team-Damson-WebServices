@@ -3,6 +3,6 @@
     public interface IGuess
     {
         string GuessingUserId { get; set; }
-        string Guess { get; set; }
+        string GuessNumber { get; set; }
     }
 }
