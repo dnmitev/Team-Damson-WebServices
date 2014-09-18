@@ -329,7 +329,15 @@ namespace BullsAndCows.Services.Controllers
                 return BadRequest(ModelState);
             }
 
-            var user = new Player() { UserName = model.Email, Email = model.Email };
+            var user = new Player()
+            {
+                
+                UserName = model.Email,
+                Email = model.Email,
+                FirstName = model.FirstName,
+                LastName = model.LastName,
+                AvatarUrl = model.AvatarUrl
+            };
 
             IdentityResult result = await UserManager.CreateAsync(user, model.Password);
 

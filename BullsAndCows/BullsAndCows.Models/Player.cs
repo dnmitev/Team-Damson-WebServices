@@ -19,5 +19,17 @@
             // Add custom user claims here
             return userIdentity;
         }
+
+        [Required]
+        [MinLength(2)]
+        [MaxLength(50)]
+        public string FirstName { get; set; }
+
+        [Required]
+        [MinLength(2)]
+        [MaxLength(50)]
+        public string LastName { get; set; }
+
+        public string AvatarUrl { get; set; }
     }
 }

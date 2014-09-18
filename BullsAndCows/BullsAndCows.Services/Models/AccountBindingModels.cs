@@ -48,6 +48,18 @@ namespace BullsAndCows.Services.Models
         [Display(Name = "Confirm password")]
         [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
+
+        [Required]
+        [MinLength(2)]
+        [MaxLength(50)]
+        public string FirstName { get; set; }
+
+        [Required]
+        [MinLength(2)]
+        [MaxLength(50)]
+        public string LastName { get; set; }
+
+        public string AvatarUrl { get; set; }
     }
 
     public class RegisterExternalBindingModel
