@@ -1,12 +1,13 @@
 ﻿namespace BullsAndCows.GameLogic
 {
-    using BullsAndCows.Data.Contracts;
-    using BullsAndCows.GameLogic.Contracts;
     using System;
     using System.Collections.Generic;
     using System.Linq;
     using System.Text;
     using System.Threading.Tasks;
+
+    using BullsAndCows.Data.Contracts;
+    using BullsAndCows.GameLogic.Contracts;
 
     public interface IGameDataValidator
     {

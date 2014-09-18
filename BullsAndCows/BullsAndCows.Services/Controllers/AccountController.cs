@@ -1,26 +1,28 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Net.Http;
-using System.Security.Claims;
-using System.Security.Cryptography;
-using System.Threading.Tasks;
-using System.Web;
-using System.Web.Http;
-using System.Web.Http.ModelBinding;
-using Microsoft.AspNet.Identity;
-using Microsoft.AspNet.Identity.EntityFramework;
-using Microsoft.AspNet.Identity.Owin;
-using Microsoft.Owin.Security;
-using Microsoft.Owin.Security.Cookies;
-using Microsoft.Owin.Security.OAuth;
-using BullsAndCows.Services.Models;
-using BullsAndCows.Services.Providers;
-using BullsAndCows.Services.Results;
-using BullsAndCows.Models;
-using System.Web.Http.Cors;
-
-namespace BullsAndCows.Services.Controllers
+﻿namespace BullsAndCows.Services.Controllers
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Net.Http;
+    using System.Security.Claims;
+    using System.Security.Cryptography;
+    using System.Threading.Tasks;
+    using System.Web;
+    using System.Web.Http;
+    using System.Web.Http.Cors;
+    using System.Web.Http.ModelBinding;
+
+    using Microsoft.AspNet.Identity;
+    using Microsoft.AspNet.Identity.EntityFramework;
+    using Microsoft.AspNet.Identity.Owin;
+    using Microsoft.Owin.Security;
+    using Microsoft.Owin.Security.Cookies;
+    using Microsoft.Owin.Security.OAuth;
+
+    using BullsAndCows.Services.Models;
+    using BullsAndCows.Services.Providers;
+    using BullsAndCows.Services.Results;
+    using BullsAndCows.Models;
+
     [Authorize]
     [RoutePrefix("api/Account")]
     [EnableCors(origins: "*", headers: "*", methods: "*")]
@@ -46,6 +48,7 @@ namespace BullsAndCows.Services.Controllers
             {
                 return _userManager ?? Request.GetOwinContext().GetUserManager<ApplicationUserManager>();
             }
+
             private set
             {
                 _userManager = value;
@@ -128,7 +131,7 @@ namespace BullsAndCows.Services.Controllers
 
             IdentityResult result = await UserManager.ChangePasswordAsync(User.Identity.GetUserId(), model.OldPassword,
                 model.NewPassword);
-            
+
             if (!result.Succeeded)
             {
                 return GetErrorResult(result);
@@ -261,9 +264,9 @@ namespace BullsAndCows.Services.Controllers
             if (hasRegistered)
             {
                 Authentication.SignOut(DefaultAuthenticationTypes.ExternalCookie);
-                
-                 ClaimsIdentity oAuthIdentity = await user.GenerateUserIdentityAsync(UserManager,
-                    OAuthDefaults.AuthenticationType);
+
+                ClaimsIdentity oAuthIdentity = await user.GenerateUserIdentityAsync(UserManager,
+                   OAuthDefaults.AuthenticationType);
                 ClaimsIdentity cookieIdentity = await user.GenerateUserIdentityAsync(UserManager,
                     CookieAuthenticationDefaults.AuthenticationType);
 
@@ -333,7 +336,7 @@ namespace BullsAndCows.Services.Controllers
 
             var user = new Player()
             {
-                
+
                 UserName = model.Email,
                 Email = model.Email,
                 FirstName = model.FirstName,
@@ -379,8 +382,9 @@ namespace BullsAndCows.Services.Controllers
             result = await UserManager.AddLoginAsync(user.Id, info.Login);
             if (!result.Succeeded)
             {
-                return GetErrorResult(result); 
+                return GetErrorResult(result);
             }
+
             return Ok();
         }
 
@@ -433,7 +437,9 @@ namespace BullsAndCows.Services.Controllers
         private class ExternalLoginData
         {
             public string LoginProvider { get; set; }
+
             public string ProviderKey { get; set; }
+
             public string UserName { get; set; }
 
             public IList<Claim> GetClaims()

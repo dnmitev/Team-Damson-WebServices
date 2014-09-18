@@ -1,9 +1,9 @@
-﻿using System;
-using System.ComponentModel.DataAnnotations;
-using Newtonsoft.Json;
-
-namespace BullsAndCows.Services.Models
+﻿namespace BullsAndCows.Services.Models
 {
+    using System;
+    using System.ComponentModel.DataAnnotations;
+    using Newtonsoft.Json;
+
     // Models used as parameters to AccountController actions.
 
     public class AddExternalLoginBindingModel

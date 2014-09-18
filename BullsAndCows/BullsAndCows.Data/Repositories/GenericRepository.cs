@@ -7,7 +7,6 @@
     using System.Linq.Expressions;
 
     using BullsAndCows.Data.Contracts;
-    
 
     public class GenericRepository<T> : IGenericRepository<T> where T : class
     {

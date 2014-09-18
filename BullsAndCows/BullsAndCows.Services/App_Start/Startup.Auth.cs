@@ -1,18 +1,13 @@
 ﻿namespace BullsAndCows.Services
 {
     using System;
-    using System.Collections.Generic;
+    using BullsAndCows.Data;
     using BullsAndCows.Services.Providers;
-    using System.Linq;
     using Microsoft.AspNet.Identity;
-    using Microsoft.AspNet.Identity.EntityFramework;
     using Microsoft.Owin;
     using Microsoft.Owin.Security.Cookies;
-    using Microsoft.Owin.Security.Google;
     using Microsoft.Owin.Security.OAuth;
     using Owin;
-    using BullsAndCows.Services.Models;
-    using BullsAndCows.Data;
 
     public partial class Startup
     {

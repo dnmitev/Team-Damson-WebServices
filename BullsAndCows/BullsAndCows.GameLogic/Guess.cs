@@ -7,6 +7,7 @@
     using System.Threading.Tasks;
 
     using BullsAndCows.GameLogic.Contracts;
+
     public class Guess : IGuess
     {
         public string GuessingUserId

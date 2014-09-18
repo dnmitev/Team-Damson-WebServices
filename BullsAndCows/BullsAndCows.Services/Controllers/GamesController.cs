@@ -5,13 +5,13 @@
     using System.Linq;
     using System.Web;
     using System.Web.Http;
+    using System.Web.Http.Cors;
     using BullsAndCows.Data;
-    using BullsAndCows.Models;
     using BullsAndCows.Data.Contracts;
     using BullsAndCows.GameLogic;
-    using BullsAndCows.Services.Infrastructure;
+    using BullsAndCows.Models;
     using BullsAndCows.Services.DataModels;
-    using System.Web.Http.Cors;
+    using BullsAndCows.Services.Infrastructure;
 
     [EnableCors(origins: "*", headers: "*", methods: "*")]
     public class GamesController : BaseApiController
@@ -49,7 +49,7 @@
             this.Data.Games.Add(newGame);
             this.Data.SaveChanges();
 
-            return Ok(newGame.Id);
+            return this.Ok(newGame.Id);
         }
 
         [HttpPost]
@@ -59,7 +59,7 @@
 
             if (currentUserId == null)
             {
-                return BadRequest("Invalid Id. Use token for authorization");
+                return this.BadRequest("Invalid Id. Use token for authorization");
             }
 
             var game = this.Data.Games
@@ -69,7 +69,7 @@
 
             if (game == null)
             {
-                return NotFound();
+                return this.NotFound();
             }
 
             game.SecondPlayerId = currentUserId;
@@ -77,7 +77,7 @@
             game.State = GameState.FirstPlayerTurn;
             this.Data.SaveChanges();
 
-            return Ok(game.Id);
+            return this.Ok(game.Id);
         }
 
         [HttpGet]
@@ -113,7 +113,7 @@
                 })
                 .FirstOrDefault();
 
-            return Ok(gameInfo);
+            return this.Ok(gameInfo);
         }
 
         [HttpPost]
@@ -123,7 +123,7 @@
 
             if (request == null || !ModelState.IsValid)
             {
-                return this.BadRequest(ModelState);
+                return this.BadRequest(this.ModelState);
             }
 
             var gameId = request.GameId;
@@ -177,7 +177,7 @@
                 GuessingUserId = currentUserId,
                 GuessNumber = guessNumber.ToString()
             };
-            var guessResult = gameValidator.GetResult(guess, Data);
+            var guessResult = this.gameValidator.GetResult(guess, Data);
 
             switch (guessResult.GameResult)
             {

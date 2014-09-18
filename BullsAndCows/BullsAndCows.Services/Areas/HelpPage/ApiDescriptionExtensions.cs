@@ -1,10 +1,10 @@
-using System;
-using System.Text;
-using System.Web;
-using System.Web.Http.Description;
-
 namespace BullsAndCows.Services.Areas.HelpPage
 {
+    using System;
+    using System.Text;
+    using System.Web;
+    using System.Web.Http.Description;
+
     public static class ApiDescriptionExtensions
     {
         /// <summary>
@@ -26,13 +26,16 @@ namespace BullsAndCows.Services.Areas.HelpPage
             }
 
             StringBuilder friendlyPath = new StringBuilder();
-            friendlyPath.AppendFormat("{0}-{1}",
+            friendlyPath.AppendFormat(
+                "{0}-{1}",
                 description.HttpMethod.Method,
                 localPath.Replace("/", "-").Replace("{", String.Empty).Replace("}", String.Empty));
+
             if (queryKeyString != null)
             {
                 friendlyPath.AppendFormat("_{0}", queryKeyString.Replace('.', '-'));
             }
+
             return friendlyPath.ToString();
         }
     }

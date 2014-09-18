@@ -2,12 +2,12 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.Data.Entity;
     using System.Linq;
 
     using BullsAndCows.Data.Contracts;
-    using BullsAndCows.Models;
     using BullsAndCows.Data.Repositories;
-    using System.Data.Entity;
+    using BullsAndCows.Models;
 
     public class BullsAndCowsData : IBullsAndCowsData
     {
@@ -15,9 +15,8 @@
         private readonly IDictionary<Type, object> repositories;
 
         public BullsAndCowsData()
-            :this(new BullsAndCowsDbContext())
+            : this(new BullsAndCowsDbContext())
         {
-
         }
 
         public BullsAndCowsData(DbContext context)

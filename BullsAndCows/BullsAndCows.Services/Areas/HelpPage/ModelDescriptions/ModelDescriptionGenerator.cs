@@ -1,18 +1,18 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Collections.Specialized;
-using System.ComponentModel.DataAnnotations;
-using System.Globalization;
-using System.Reflection;
-using System.Runtime.Serialization;
-using System.Web.Http;
-using System.Web.Http.Description;
-using System.Xml.Serialization;
-using Newtonsoft.Json;
-
 namespace BullsAndCows.Services.Areas.HelpPage.ModelDescriptions
 {
+    using System;
+    using System.Collections;
+    using System.Collections.Generic;
+    using System.Collections.Specialized;
+    using System.ComponentModel.DataAnnotations;
+    using System.Globalization;
+    using System.Reflection;
+    using System.Runtime.Serialization;
+    using System.Web.Http;
+    using System.Web.Http.Description;
+    using System.Xml.Serialization;
+    using Newtonsoft.Json;
+
     /// <summary>
     /// Generates model descriptions for given types.
     /// </summary>
@@ -399,6 +399,7 @@ namespace BullsAndCows.Services.Areas.HelpPage.ModelDescriptions
                 ModelType = modelType,
                 Documentation = CreateDefaultDocumentation(modelType)
             };
+
             bool hasDataContractAttribute = modelType.GetCustomAttribute<DataContractAttribute>() != null;
             foreach (FieldInfo field in modelType.GetFields(BindingFlags.Public | BindingFlags.Static))
             {
@@ -409,13 +410,16 @@ namespace BullsAndCows.Services.Areas.HelpPage.ModelDescriptions
                         Name = field.Name,
                         Value = field.GetRawConstantValue().ToString()
                     };
+
                     if (DocumentationProvider != null)
                     {
                         enumValue.Documentation = DocumentationProvider.GetDocumentation(field);
                     }
+
                     enumDescription.Values.Add(enumValue);
                 }
             }
+
             GeneratedModels.Add(enumDescription.Name, enumDescription);
 
             return enumDescription;
