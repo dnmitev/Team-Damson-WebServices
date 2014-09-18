@@ -11,7 +11,9 @@
     using BullsAndCows.GameLogic;
     using BullsAndCows.Services.Infrastructure;
     using BullsAndCows.Services.DataModels;
+    using System.Web.Http.Cors;
 
+    [EnableCors(origins: "*", headers: "*", methods: "*")]
     public class GamesController : BaseApiController
     {
         private readonly IGameDataValidator gameValidator;

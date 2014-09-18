@@ -17,11 +17,13 @@ using BullsAndCows.Services.Models;
 using BullsAndCows.Services.Providers;
 using BullsAndCows.Services.Results;
 using BullsAndCows.Models;
+using System.Web.Http.Cors;
 
 namespace BullsAndCows.Services.Controllers
 {
     [Authorize]
     [RoutePrefix("api/Account")]
+    [EnableCors(origins: "*", headers: "*", methods: "*")]
     public class AccountController : ApiController
     {
         private const string LocalLoginProvider = "Local";

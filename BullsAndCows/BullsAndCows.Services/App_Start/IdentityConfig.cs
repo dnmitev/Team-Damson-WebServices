@@ -1,13 +1,11 @@
 ﻿namespace BullsAndCows.Services
 {
-    using System.Threading.Tasks;
+    using BullsAndCows.Data;
+    using BullsAndCows.Models;
     using Microsoft.AspNet.Identity;
     using Microsoft.AspNet.Identity.EntityFramework;
     using Microsoft.AspNet.Identity.Owin;
     using Microsoft.Owin;
-    using BullsAndCows.Services.Models;
-    using BullsAndCows.Models;
-    using BullsAndCows.Data;
 
     // Configure the application user manager used in this application. UserManager is defined in ASP.NET Identity and is used by the application.
 
@@ -41,6 +39,7 @@
             {
                 manager.UserTokenProvider = new DataProtectorTokenProvider<Player>(dataProtectionProvider.Create("ASP.NET Identity"));
             }
+
             return manager;
         }
     }
