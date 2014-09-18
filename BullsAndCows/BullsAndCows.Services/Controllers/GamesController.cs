@@ -160,10 +160,14 @@
                 GameState.SecondPlayerTurn : GameState.FirstPlayerTurn;
 
             this.Data.SaveChanges();
+            var guess = new Guess
+            {
+                GuessingUserId = currentUserId,
+                Guess = guessNumber.ToString()
+            };
+            var guessResult = gameValidator.GetResult(guess,Data);
 
-            var gameResult = gameValidator.GetResult(guessNumber);
-
-            switch (gameResult)
+            switch (guessResult.GameResult)
             {
                 case GameResult.NotFinished:
                     break;

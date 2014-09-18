@@ -2,7 +2,7 @@
 {
     public interface IGuess
     {
-        string GuessingUserId { get; }
-        string Guess { get; }
+        string GuessingUserId { get; set; }
+        string Guess { get; set; }
     }
 }

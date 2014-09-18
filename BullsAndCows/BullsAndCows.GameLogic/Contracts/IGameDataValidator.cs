@@ -1,5 +1,7 @@
 ﻿namespace BullsAndCows.GameLogic
 {
+    using BullsAndCows.Data.Contracts;
+    using BullsAndCows.GameLogic.Contracts;
     using System;
     using System.Collections.Generic;
     using System.Linq;
@@ -8,6 +10,6 @@
 
     public interface IGameDataValidator
     {
-        GameResult GetResult(int guessNumber);
+        IGuessResult GetResult(IGuess guess, IBullsAndCowsData data);
     }
 }
