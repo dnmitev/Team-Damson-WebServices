@@ -165,7 +165,7 @@
                 GuessingUserId = currentUserId,
                 GuessNumber = guessNumber.ToString()
             };
-            var guessResult = gameValidator.GetResult(guess,Data);
+            var guessResult = gameValidator.GetResult(guess, Data);
 
             switch (guessResult.GameResult)
             {
@@ -182,6 +182,38 @@
                 default:
                     break;
             }
+
+            return this.Ok();
+        }
+
+        public IHttpActionResult Leave(PlayRequestDataModel request)
+        {
+            var currentUserId = this.userIdProvider.GetUserId();
+
+            if (request == null || !ModelState.IsValid)
+            {
+                return this.BadRequest(ModelState);
+            }
+
+            var gameId = request.GameId;
+
+            var game = this.Data.Games.SearchFor(g => g.Id == gameId).FirstOrDefault();
+
+            if (game == null)
+            {
+                return this.BadRequest("Invalid game id!");
+            }
+
+            if (currentUserId == game.FirstPlayerId)
+            {
+                game.State = GameState.WonBySecondPlayer;
+            }
+            else if (currentUserId == game.SecondPlayerId)
+            {
+                game.State = GameState.WonByFirstPlayer;
+            }
+
+            this.Data.SaveChanges();
 
             return this.Ok();
         }
