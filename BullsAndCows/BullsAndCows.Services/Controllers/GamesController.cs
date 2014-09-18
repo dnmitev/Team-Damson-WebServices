@@ -17,6 +17,11 @@
         private readonly IGameDataValidator gameValidator;
         private readonly IUserIdProvider userIdProvider;
 
+        //public GamesController()
+        //    : this(new BullsAndCowsData(), new GameDataValidator(), new AspUserIdProvider())
+        //{
+        //}
+
         public GamesController(
             IBullsAndCowsData data,
             IGameDataValidator gameValidator,

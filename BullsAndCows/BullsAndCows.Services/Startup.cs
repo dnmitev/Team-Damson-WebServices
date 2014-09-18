@@ -24,25 +24,25 @@ namespace BullsAndCows.Services
         public void Configuration(IAppBuilder app)
         {
             ConfigureAuth(app);
-            app.UseNinjectMiddleware(CreateKernel).UseNinjectWebApi(GlobalConfiguration.Configuration);
+            //app.UseNinjectMiddleware(CreateKernel).UseNinjectWebApi(GlobalConfiguration.Configuration);
         }
 
-        private static StandardKernel CreateKernel()
-        {
-            var kernel = new StandardKernel();
-            kernel.Load(Assembly.GetExecutingAssembly());
-            RegisterMappings(kernel);
-            return kernel;
-        }
+        //private static StandardKernel CreateKernel()
+        //{
+        //    var kernel = new StandardKernel();
+        //    kernel.Load(Assembly.GetExecutingAssembly());
+        //    RegisterMappings(kernel);
+        //    return kernel;
+        //}
 
-        private static void RegisterMappings(StandardKernel kernel)
-        {
-            kernel.Bind<IBullsAndCowsData>().To<BullsAndCowsData>()
-                .WithConstructorArgument("context", c => new BullsAndCowsDbContext());
+        //private static void RegisterMappings(StandardKernel kernel)
+        //{
+        //    kernel.Bind<IBullsAndCowsData>().To<BullsAndCowsData>()
+        //        .WithConstructorArgument("context", c => new BullsAndCowsDbContext());
 
-            kernel.Bind<IGameDataValidator>().To<GameDataValidator>();
+        //    kernel.Bind<IGameDataValidator>().To<GameDataValidator>();
 
-            kernel.Bind<IUserIdProvider>().To<AspUserIdProvider>();
-        }
+        //    kernel.Bind<IUserIdProvider>().To<AspUserIdProvider>();
+        //}
     }
 }
